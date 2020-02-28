@@ -1,8 +1,12 @@
 <template>
-  <span id="app1">
-    App1 is working!
+  <span id="app">
+    App1 is working! Yes, this is working; i'm very happy!!
+    but this is  no bat
     <p>comment me on and off to see HMR</p>
     <router-view></router-view>
+    <br>
+    <router-link to="/app2">Go to app2 page home</router-link>
+
   </span>
 </template>
 

@@ -9,9 +9,9 @@
     <script type="systemjs-importmap">
       {
         "imports": {
-          "navbar": "http://localhost:8080/app.js",
-          "app1": "http://localhost:8081/app.js",
-          "app2": "http://localhost:8082/app.js",
+          "home": "http://localhost:8080/js/app.js",
+          "app1": "http://localhost:8081/js/app.js",
+          "app2": "http://localhost:8082/js/app.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.7/system/single-spa.min.js",
           "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
           "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js"
@@ -38,22 +38,32 @@
           Vue.use(VueRouter)
 
           singleSpa.registerApplication(
-            'navbar',
-            () => System.import('navbar'),
+            'home',
+            () => System.import('home'),
             location => true
           );
+
+          // singleSpa.registerApplication(
+          //   'navbar',
+          //   () => System.import('navbar'),
+          //   location => true
+          // );
 
           singleSpa.registerApplication(
             'app1',
             () => System.import('app1'),
             location => location.pathname.startsWith('/app1')
           )
-
           singleSpa.registerApplication(
             'app2',
             () => System.import('app2'),
             location => location.pathname.startsWith('/app2')
           )
+          // singleSpa.registerApplication(
+          //   'login',
+          //   () => System.import('login'),
+          //   location => location.pathname.startsWith('/login')
+          // )
 
           singleSpa.start();
         })

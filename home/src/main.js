@@ -13,6 +13,7 @@ const vueLifecycles = singleSpaVue({
     router,
   },
 });
+
 export const bootstrap = vueLifecycles.bootstrap;
 export const mount = vueLifecycles.mount;
 export const unmount = vueLifecycles.unmount;

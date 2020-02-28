@@ -21,6 +21,7 @@ With single-spa, it is preferred to run `npm run serve` in only one single-spa a
 version of the other applications. This makes for an awesome developer experience where you can boot up just one
 microfrontend at a time, not even having to clone, npm install, or boot up all of the other ones.
 
+
 To try this out, clone the repo and run the following commands:
 ```sh
 cd app1
@@ -63,6 +64,28 @@ npm install
 npm run serve
 ```
 
+## 关于打包部署
+
+只要在各个APP各自打包
+然后 创建文件夹将打好的包复制到文件夹里各自分开
+
+
+```sh
+- cd navbar && npm ci && npm run build && rm dist/index.html
+- cd ../app1 && npm ci && npm run build && rm dist/index.html
+- cd ../app2 && npm ci && npm run build && rm dist/index.html
+- cd ..
+- mkdir -p static/navbar static/app1 static/app2 && cp -a navbar/dist/* static/navbar && cp -a app1/dist/* static/app1 && cp -a app2/dist/* static/app2 // 批量创建各个APP文件夹将打好的包复制到文件夹中
+- cp root-html-file/index.html static
+- echo "Files that will be deployed"
+- find static
+- sed -i 's/http:\/\/localhost:8080/\/navbar\/js/g' static/index.html
+- sed -i 's/http:\/\/localhost:8081/\/app1\/js/g' static/index.html
+- sed -i 's/http:\/\/localhost:8082/\/app2\/js/g' static/index.html
+- cp static/index.html static/200.html
+```
+
+
 Now go to http://localhost:5000 in a browser. Note that you can change any of the ports for the projects by modifying the Import Map inside of
 root-html-file/index.html.
 
@@ -74,3 +97,4 @@ deployed environment overridable, just like you can do overrides on http://coexi
 
 ## More documentation
 Go to https://single-spa.js.org/docs/ecosystem-vue.html to learn how all of this works.
+
